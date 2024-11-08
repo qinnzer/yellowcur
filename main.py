@@ -2,12 +2,11 @@ import sys
 import random
 from PyQt6 import QtWidgets, uic, QtGui
 from PyQt6.QtWidgets import QApplication, QMainWindow
+import ui
 
-
-class Yellowcir(QMainWindow):
+class Yellowcir(ui.Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
 
         self.pushButton.clicked.connect(self.add_circle)
 
@@ -17,12 +16,13 @@ class Yellowcir(QMainWindow):
         self.graphicsView.setScene(self.scene)
 
     def add_circle(self):
+        color = ['red', 'yellow', 'blue', 'green', 'brown', 'black', 'white', 'purple', 'pink']
         diameter = random.randint(20, 100)
         x = random.randint(0, 800 - diameter)
         y = random.randint(0, 600 - diameter)
 
         circle = QtWidgets.QGraphicsEllipseItem(x, y, diameter, diameter)
-        circle.setBrush(QtGui.QBrush(QtGui.QColor('yellow')))
+        circle.setBrush(QtGui.QBrush(QtGui.QColor(random.choice(color))))
         self.scene.addItem(circle)
 
 
